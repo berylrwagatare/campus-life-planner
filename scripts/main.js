@@ -17,8 +17,48 @@ boot();
 $('unit').value = state.settings.unit;
 $('cap').value = capView();
 renderAll();
+ 
+$('taskForm').addEventListener('submit', (e) =>  {  e,preventDefault();
+   const title =$('title').value, date = $('dueDate').value , dur =
+$('duration').value, tag = $('tag').value;
+  $('titleError').textContent =validateTitle(title);
+  $('dateError').textContent =validateDate(date);
+  $('tagError').textContent =validateTag(tag);
+  $('durationError').textContent = validateDuration(dur);
+  if ($('titleError').textContent || $('dateError').textContent  || $('durationError').textContent ||$('tagError').textContent  ){ 
+    return say('formStatus', 'Please fix the errors before saving.');
+  }
+  addOrUpdate({ id:$('editId').value || underfined, title, date,duration:toMinutes(dur), tag });
+  resetForm();
+  say('formStatus', 'Task saved.');
+  renderAll();
+});
+$('cancelEdit').onclick = resetForm;
 
-{ 
+$('taskList'). addEventListener('click', (e) => {
+    const { edit, del } = e.target.dataset;
+    if (edit) {
+      const rec =state.records.find((r) => r.id === edit);
+    if (!rec) return;
+    $('editId').value = rec.id;
+    $('title').value = rec.title;
+    $('dueDate').value = rec.date;
+    $('duration').value = fromMinutes(rec.duration);
+    $('tag').value = rec.tag;
+    $('saveBtn').textContent = 'Update task';
+    $('cancelEdit').hidden = false;
+    }  
+if(del && confirm('Delete this task?')) { remove(del); renderAll(); }
+ });
+  
+ function applySearch() {
+    const raw =$('search').value.trim();
+    const re = compileRegex(raw, $('caseInsesitive').checked ? 'i' : '');
+    state.searchRe = raw ? '' : re ? :null;
+    say ('searchStaus', !raw? '' : re ?  'Search ready.': 'Invalid regex. Try again.');
+    renderAll();
+ }
+
 $('search').oninput =applySearch;
 $('caseInsensitive').onchange = applySearch;
 $('sortKey').onchange= () => { state.sortKey = $('sortKey').value; renderAll();  };
@@ -46,5 +86,5 @@ $('importFile').onchange = async (e) => {
 };
 $('loadSeed').onclick = async () => loadList(await (await fetch('seed.json')).json(), 'Loaded seed.json' );
 
-}
+
 
