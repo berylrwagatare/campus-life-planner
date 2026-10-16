@@ -1,1 +1,1 @@
-# student-finance-tracker
+# campus-life-planer

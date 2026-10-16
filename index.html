@@ -1,80 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Life Planner</title>
-    <link rel="stylesheet" href="style.css " />
-</head>   
+    <meta charset="UFT-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAMPUS LIFE PLANNER</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
 <body>
-      
-     <header>
-        <h1> Campus Life Planner</h1>
-        <p>Plan your assignments , study sessions , meetings and events.</p>
-     </header>
-     <main>
+      <header>
+        <h1>Campus Life Planner</h1>
+        <p>Plan your assignment , study sessions , meetings and events.</p>
+      </header>
+
+      <main>
         <section class="stats">
             <div class="stat-box">
                 <span id="totalTasks">0</span>
-                <small>Totaltasks</small> 
+                <small>TotalTasks</small>
             </div>
-            <div class="stat-box">
-                <span id="Tasksdone">0</span>
-                <small>Tasksdone</small>
+            <div class="sta-box">
+                <span id="doneTasks">O</span>
+                <small>Done</small>
+    
             </div>
-            <div class="stat-box">
-                <span id="totalTime">0h 0min</span>
-                <small>Time left to do</small>
+            <div class="sta-box">
+                <span id="Totaltime">0h 0min </span>
+                <small>Time left is </small>
             </div>
         </section>
-        <section class="card"></section>
-        <h2>Add a new task</h2>
-        <form id="taskform">
+        <selection class="card">
+            <h2>Add a new task</h2>
+            <form id="taskForm">
 
 
-            <label for="title">Task title</label>
-            <input type="text" id="title" placeholder="e.g E-labassignment" required />
-             
+                <label for="title">Task title</label>
+                <input type="text" id="title" placeholder="e.g Elab assignment" required />
+                 
 
-            <label for="dueDate">Due date</label>
-            <input type="date" id="duedate" required />
-
-
-            <label for="duration">Duration</label>
-            <input type="number" id="duration"min="2" placeholder="eg. 90" required />
-             
-
-            <label for="tag">Tag</label>
-            <select id="tag">
-                <option value="Assignment">Assignment</option>
-                <option value="Meeting">Meeting</option>
-                <option value="Event">Event</option>
-            </select>
+                <label for="Duedate">Due date</label>
+                <input type="date" id="duedate" required />
 
 
-            <button type="submit">+ ADd Task</button>
-        </form>
-    </section>
-
-    <section class="card">
-        <div class="list-header">
-            <h2>MY TASKS</h2>
-            <select id="filter">
-                <option value="All">All tags</option>
-                <option value="Assignment">Assignment</option>
-                <option value="Study">Study</option>
-                <option value="Meeting">Meeting</option>
-                <option value="Event">Event</option>
-         </select>
-        </div>
-        <ul id="taskList"></ul>
-        <p id="emptyMessage">No tasks yet. Add your first one above!</p>
-    </section>
+                <label for="duration">Duration</label>
+                <input type="number" id="duration" min="2" placeholder="e.g 45" required />
 
 
-     </main>
-
-
-     <script src="'script.js"></script>
+                <label for="tag">Tag</label>
+                <select id="tag">
+                    <option value="Assignment">Assignment</option>
+                    <option value="Study">Study</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Events">Event</option>
+                </select>
+                 <button type="submit">+Add Task</button>
+            </form>
+        </selection>
+        <section class="card">
+            <div class="list-header">
+                <h2>My tasks</h2>
+                <select id="filter">
+                    <option value="All">All tags</option>
+                    <option value="Assignment">Assignment</option>
+                    <option value="Study">Study</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Event">Event</option>
+                </select>
+            </div>
+            <ul id="taskList"></ul>
+            <p id="emptyMessage">No task yet. Add your first one!</p>
+        </section>
+      </main>
+      <script src="script.js"></script>
 </body>
-</html>
+</html>   
