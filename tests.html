@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" /><title>Planner tests</title></head>
+<body>
+    <h1>Small regex tests</h1>
+    <pre id="out"></pre>
+    <script type="module">
+        import { validateTitle, validateDuration, validateDate, validateTag, PATTERNS } from './scripts/validators.js';
+        const lines= [];
+        const ok = (name, pass)  => lines.push((pass ? 'PASS' : 'FAIL') + '-' + name);
+        ok('title', validateTitle('Elab Formative') === '');
+        ok('spaces', validateTitle('   spaced  ') !== '');
+        ok('duration', validateTitle( 'study study now')  !== '');
+        ok('duration', validateDuration( '90 ') === '' && validateDuration('01') !== '');
+        ok('date', validateDate('2025-09-29') ===''&& validateDate('2025-13-01') !== '');
+        ok('tag', validateTag('Group Work') === '' &&  validateTag('Lab2') !== '');
+        ok('back-ref', PATTERNS.duplicateWord.test('very very late'));
+        ok('bad regex', compileRegex('(') === null);
+        document.getElementById('out').textContent = lines.join('\n');
+    </script>
+</body>
+</html>
