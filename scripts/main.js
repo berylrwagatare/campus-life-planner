@@ -8,16 +8,16 @@ const $ = (id) => document.getElementById(id);
 const say= (id, msg ) => { $(id).textContent =msg;};
 const capView= () => fromMinutes(state.settings.cap);
 function resetForm() {
-    $('taskForm').reset();
-    $('editId').value ='';
-    $('saveBtn').textContent= 'Add task';
+    $('taskForm' ).reset();
+    $('editId').value='';
+    $('saveBtn' ).textContent='Add task';
     $('cancelEdit').hidden= true;
 }
 boot();
 $('unit').value = state.settings.unit;
-$('cap').value = capView();
+$('cap').value= capView();
 renderAll();
- 
+
 $('taskForm').addEventListener('submit', (e) =>  {  e,preventDefault();
    const title =$('title').value, date = $('dueDate').value , dur =
 $('duration').value, tag = $('tag').value;
@@ -54,7 +54,7 @@ if(del && confirm('Delete this task?')) { remove(del); renderAll(); }
  function applySearch() {
     const raw =$('search').value.trim();
     const re = compileRegex(raw, $('caseInsesitive').checked ? 'i' : '');
-    state.searchRe = raw ? '' : re ? :null;
+    state.searchRe = raw ? re : null;
     say ('searchStaus', !raw? '' : re ?  'Search ready.': 'Invalid regex. Try again.');
     renderAll();
  }

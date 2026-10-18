@@ -7,9 +7,9 @@ main{ max-width: 700px; margin: 0 auto ; padding : 16px; }
 .stat-box, .sta-box{
 flex:1;
 background: white;
-boder-radius: 10px;
+border-radius: 10px;
 padding: 12px;
-text-allign: center;
+text-align: center;
 
 }
 .stat-box span, .sta-box span { display : block; font-size: 1.4rem; font-weight: bold; color: #d170e9;  }
@@ -26,7 +26,7 @@ input, select {
   width: 100%;
   padding: 10px;
   border: 1px solid #e4b0e6;
-  boder-radius: 8px;
+  border-radius: 8px;
   font-size: 1rem;
 }
 
@@ -37,7 +37,7 @@ button {
   width: 100%;
   margin-top : 14px;
   padding: 12px;
-  background:#dc5eef;
+  background:#f4d7f8;
   color:white;
   border: none;
   border-radius: 8px;
@@ -46,15 +46,15 @@ button {
 }
 
 
-button:hover { background: #d675ef; }
+button:hover { background: #dfbce8; }
 
 .list-header { display: flex; justify-content: space-between; align-items: center; }
 .list-header select { width : auto; }
 ul { list-style: none; }
-li { padding: 10px 0; boder-bottom: 1px solid #eee;  }
-#emptyMessage { text-allign: center; color: #f190fe; padding: 14px 0; }
+li { padding: 10px 0; border-bottom: 1px solid #eee;  }
+#emptyMessage { text-align: center; color: #f190fe; padding: 14px 0; }
 
 @media (max-width:480px) {
   .stats { flex-direction : column; }
-  
+
 }
