@@ -39,7 +39,7 @@ input, select{
 .list-header select { width: auto ;  }
 ul { list-style: none;}
 li { padding : 10px 0; border-bottom : 1px solid #eee; }
-#emptyMessage { text-align: center; color: #f190fe; padding: 14px 0; }
+#emptyMessage { text-align: center; color: #fad4ff; padding: 14px 0; }
 
 @media (max-width:480px){
   .stats { flex-direction: column; }
@@ -66,13 +66,13 @@ button {
 
 }
 /* Lighter pink when the mouse is over a button */
-button:hover { background: #dfbce8; }
+button:hover { background: #f8f7f9; }
 /* Dark outline when a button is reached with the Tab key (keyboard users) */
-button:focus-visible { outline: 3px solid #fdd0ff; outline-offset: 2px; }
+button:focus-visible { outline: 3px solid #d0c9d0; outline-offset: 2px; }
 
 
 #newTask, #cancelEdit {
-  background: #f4d7f8;
+  background: #b5aeb6;
 }
 #newTask:hover, #cancelEdit:hover { background: #dfbce8; }
 

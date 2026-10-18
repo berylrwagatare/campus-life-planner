@@ -21,12 +21,12 @@
                 <small>TotalTasks</small>
             </div>
             <div class="stat-box">
-                <span id="doneTasks">0</span>
-                <small>Done</small>
+                <span id="sumDuration">0</span>
+                <small>Total planned</small>
     
             </div>
             <div class="stat-box">
-                <span id="totalTime">0h 0min </span>
+                <span id="timeLeft">No cap set </span>
                 <small>Time left is </small>
             </div>
         </section>
@@ -72,6 +72,7 @@
 
             </form>
         </section>
+
         <section class="card">
             <div class="list-header">
                 <h2>My tasks</h2>
@@ -85,6 +86,43 @@
             </div>
             <ul id="taskList"></ul>
             <p id="emptyMessage">No task yet. Add your first one!</p>
+        </section>
+        <section class="card">
+            <h2>Settings</h2>
+
+
+            <label for="'unit">Duration unit</label>
+            <select id ="unit">
+                <option value="minutes">Minutes</option>
+                <option value="hours">Hours</option>
+            </select>
+           
+
+            <label for="cap">Time cap(total time you can spend)</label>
+            <input type="number" id="cap" min="0" step="any" placeholder="e.g 600" />
+            <p id="capStatus" role="status" aria-live="polite"></p>
+
+            <label for "search">Search (regex)</label>
+            <input type=" text" id="search" placeholder="e.g ^Elab " />
+            <label>input type="checkbox" id="caseInsensitive" checked /> Ignore case </label>
+            <p id="searchStatus" role="status"  aria-live="polite"></p>
+
+            <label for="sortKey">Sort by</label>
+            <select id=" sortKey">
+                <option value="date">Date</option>
+                <option value="title">Title</option>
+                <option value="duration">Duration</option>
+            </select>
+            <button type="button" id="exportBtn">Export JSON</button>
+            <label for="importFile">Import Json</label>
+            <imput type="file" id="importFile" accept="application/json" />
+            <button type="button" id="loadseed">load seed.json</button>
+            <p id="settingsStatus" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="card">
+            <h2>Last 7 days</h2>
+            <div id="chart" style="display:flex; align-items:flex-end; gap: 6px; height:100px;"></div>
         </section>
       </main>
 

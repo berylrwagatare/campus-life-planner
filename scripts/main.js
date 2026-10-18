@@ -5,8 +5,16 @@ import { renderAll } from './ui.js';
 
 
 const $ = (id) => document.getElementById(id);
-const say= (id, msg ) => { $(id).textContent =msg;};
+const say= (id, msg ) => { const el = $(id); if (el) el.textContent =msg;};
+const on = (id, event, fn) => {
+  const el = $(id);
+  if (el) el.addEventListener(event, fn);
+  else console.warn('Missing element in index.html: #'+id);
+};
+
+
 const capView= () => fromMinutes(state.settings.cap);
+
 function resetForm() {
     $('taskForm' ).reset();
     $('editId').value='';

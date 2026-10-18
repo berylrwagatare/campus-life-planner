@@ -22,14 +22,12 @@ export function renderAll() {
 
   $('taskList').innerHTML = rows.map((r) => {
     const dur = fromMinutes(r.duration) + unit();
-    return `<tr>
-      <td data-label="Title">${highlight(r.title, state.searchRe)}</td>
-      <td data-label="Date">${highlight(r.date, state.searchRe)}</td>
-      <td data-label="Duration">${highlight(String(dur), state.searchRe)}</td>
-      <td data-label="Tag">${highlight(r.tag, state.searchRe)}</td>
-      <td data-label="Action"><button type="button" data-edit="${r.id}">Edit</button>
-      <button type="button" data-del="${r.id}">Delete</button></td>
-    </tr>`;
+    return `<li>
+      <strong>${highlight(r.title, state.searchRe)}</strong><br>
+      ${highlight(r.date, state.searchRe)} . ${highlight(String(dur), state.searchRe)} . ${highlight(r.tag, state.searchRe)}<br>
+      <button type="button" data-edit="${r.id}">Edit</button>
+      <button type="button" data-del="${r.id}">Delete</button>
+    </li>`;
   }).join('');
 
   $('emptyMessage').hidden = rows.length > 0;
@@ -47,16 +45,17 @@ export function renderAll() {
   const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
   $('topTag').textContent = top ? top[0] : '-';
 
-  const cap = Number(state.settings.cap) || 0;
-  const left = cap - sum;
+  const capNow = Number(state.settings.cap) || 0;
+  const leftNow= capNow - sum;
+  const fmt = (m) => `${Math.floor(Math.abs(m) / 60)}h ${Math.abs(m)% 60}min`;
+ $('timeLeft').textContent = !capNow ? 'No cap set' : leftNow >= 0 ? fmt(leftNow) : `Over by ${fmt(leftNow)}`;
   const box = $('capStatus');
-  box.setAttribute('aria-live', left < 0 ? 'assertive' : 'polite');
-  box.textContent = !cap
-    ? 'No weekly cap set.'
-    : (left >= 0 ? 'Under cap: ' : 'Over cap: ') +
-      fromMinutes(Math.abs(left)) +
-      ' ' + state.settings.unit +
-      (left >= 0 ? ' remaining.' : ' over your target.');
+  box.setAttribute('aria-live', leftNow < 0 && capNow ? 'assertive' : 'polite');
+  box.textContent = !capNow
+    ? 'No cap set.'
+    : leftNow >= 0 ? `Under cap: ${fromMinutes(leftNow)}  ${state.settings.unit}  remaining.`
+     : `Over cap: ${fromMinutes(-leftNow)} ${state.settings.unit} over your target. `;
+      
 
   const days = [...Array(7)].map((_, i) => {
     const d = new Date();
@@ -69,6 +68,6 @@ export function renderAll() {
   );
   const max = Math.max(1, ...totals);
   $('chart').innerHTML = days.map((day, i) =>
-    `<div class="bar" title="${day}: ${fromMinutes(totals[i])}" style="height: ${(totals[i] / max) * 100}%"></div>`
+    `<div class="bar" title="${day}: ${fromMinutes(totals[i])}${unit()} " style="flex:1; background:#dc5eef; min-height:2px; height: ${(totals[i] / max) * 100}%"></div>`
   ).join('');
 }
