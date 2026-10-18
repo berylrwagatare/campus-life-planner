@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
+    <a class="skip" href="#main">Skip to main content</a>
+
       <header>
         <h1>Campus Life Planner</h1>
         <p>Plan your assignment , study sessions , meetings and events.</p>
       </header>
 
-      <main>
-        <section class="stats">
+      <main id="main">
+        <section class="stats" aria-label="Summary">
             <div class="stat-box">
                 <span id="totalTasks">0</span>
                 <small>TotalTasks</small>
             </div>
             <div class="sta-box">
-                <span id="doneTasks">O</span>
+                <span id="doneTasks">0</span>
                 <small>Done</small>
     
             </div>
@@ -30,7 +32,8 @@
         </section>
         <selection class="card">
             <h2>Add a new task</h2>
-            <form id="taskForm">
+            <form id="taskForm" novalidate>
+                <input type="hidden" id="editId" />
 
 
                 <label for="title">Task title</label>
@@ -52,7 +55,9 @@
                     <option value="Meeting">Meeting</option>
                     <option value="Events">Event</option>
                 </select>
-                 <button type="submit">+Add Task</button>
+
+                 <button type="button" id="CancelEdit" hidden>Cancel</button>
+
             </form>
         </selection>
         <section class="card">
@@ -70,6 +75,7 @@
             <p id="emptyMessage">No task yet. Add your first one!</p>
         </section>
       </main>
-      <script src="script.js"></script>
+
+      <script type="module" src="scripts/main.js"></script>
 </body>
 </html>   
