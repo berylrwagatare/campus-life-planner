@@ -80,7 +80,7 @@ export const exportJSON = () => JSON.stringify(state.records, null, 2);
 export function importRecords(data) {
     if (!Array.isArray(data)) throw new Error('Invalid file: expected an array.');
     const bad = data.map(validateRecord).find(Boolean);
-    if (bad) thrown new Error ('Invalid file: ' +bad);
+    if (bad) throw new Error ('Invalid file: ' +bad);
     state.records= data;
     save();
 }

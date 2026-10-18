@@ -20,17 +20,17 @@
                 <span id="totalTasks">0</span>
                 <small>TotalTasks</small>
             </div>
-            <div class="sta-box">
+            <div class="stat-box">
                 <span id="doneTasks">0</span>
                 <small>Done</small>
     
             </div>
-            <div class="sta-box">
-                <span id="Totaltime">0h 0min </span>
+            <div class="stat-box">
+                <span id="totalTime">0h 0min </span>
                 <small>Time left is </small>
             </div>
         </section>
-        <selection class="card">
+        <section class="card">
             <h2>Add a new task</h2>
             <form id="taskForm" novalidate>
                 <input type="hidden" id="editId" />
@@ -40,12 +40,12 @@
                 <input type="text" id="title" placeholder="e.g Elab assignment" required />
                  
 
-                <label for="Duedate">Due date</label>
-                <input type="date" id="duedate" required />
+                <label for="dueDate">Due date</label>
+                <input type="date" id="dueDate" required />
 
 
                 <label for="duration">Duration</label>
-                <input type="number" id="duration" min="2" placeholder="e.g 45" required />
+                <input type="number" id="duration" min="0" placeholder="e.g 45" required />
 
 
                 <label for="tag">Tag</label>
@@ -53,17 +53,29 @@
                     <option value="Assignment">Assignment</option>
                     <option value="Study">Study</option>
                     <option value="Meeting">Meeting</option>
-                    <option value="Events">Event</option>
+                    <option value="Event">Event</option>
                 </select>
 
+                <input type="hidden" id=" editId" />
+
+            
+                 <p class="error" id="titleError"></p>
+                 <p class="error" id="dateError"></p>
+                 <p class="error" id="durationError"></p>
+                 <p class="error" id="tagError"></p>
+
+
+                <button type=" submit" id="SaveBtn">Add Task</button>
+                <button type=" button" id="'newTask">New Task</button>
                  <button type="button" id="CancelEdit" hidden>Cancel</button>
+                 <p id="formStatus" role="status" aria-live="polite"></p>
 
             </form>
-        </selection>
+        </section>
         <section class="card">
             <div class="list-header">
                 <h2>My tasks</h2>
-                <select id="filter">
+                <select id=" ">
                     <option value="All">All tags</option>
                     <option value="Assignment">Assignment</option>
                     <option value="Study">Study</option>
