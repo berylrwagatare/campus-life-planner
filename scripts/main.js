@@ -34,6 +34,7 @@ $('duration').value, tag = $('tag').value;
   renderAll();
 });
 $('cancelEdit').onclick = resetForm;
+$('newTask').onclick =()  => {resetForm(); say('formStatus','');}
 
 $('taskList'). addEventListener('click', (e) => {
     const { edit, del } = e.target.dataset;

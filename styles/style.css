@@ -33,8 +33,7 @@ input, select{
   font-size: 1rem;
 
 }
-button:hover{ background: #dfbce8}
- 
+
 
 .list-header { display : flex; justify-content: space-between; align-items: center; }
 .list-header select { width: auto ;  }
@@ -47,3 +46,38 @@ li { padding : 10px 0; border-bottom : 1px solid #eee; }
 
 
 }
+/*=========================================
+  BUTTONS AND ERROR MESSAGES
+  ========================================= */
+
+
+/* Base style shared by evey button on the page */
+
+button {
+  margin: 12px 8px 00;
+  padding: 10px 18px;
+  background:#f6bcef;
+  color : #ecc1f0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+/* Lighter pink when the mouse is over a button */
+button:hover { background: #dfbce8; }
+/* Dark outline when a button is reached with the Tab key (keyboard users) */
+button:focus-visible { outline: 3px solid #fdd0ff; outline-offset: 2px; }
+
+
+#newTask, #cancelEdit {
+  background: #f4d7f8;
+}
+#newTask:hover, #cancelEdit:hover { background: #dfbce8; }
+
+
+[hidden] { display: none !important; }
+
+.error { color:#f6bcef; font-size: 0.9rem; min-height: 1.2em; }
+#formStatus { margin-top : 8 px; color: #f9caf8; }
