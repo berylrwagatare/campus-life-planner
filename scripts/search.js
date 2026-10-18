@@ -3,8 +3,17 @@ export function compileRegex(input , flags ='i') {
     catch { return null; }
 }
 export function highlight(text, re) {
-    const safe = String(text).replaceAll('&', '&amp;').replaceAll('<' , '&lt ;' ).replaceAll('>' , '&gt; ');
-    return re? safe.replace(re, (m) => '<marks>${m}</marks>' ) : safe;
+    const esc = (s) => s.replaceAll('&', '&amp;').replaceAll('<' , '&lt ;' ).replaceAll('>' , '&gt; ');
+    const str = String(text);
+    if (!re) return esc(str);
+    const g = new RegExp(re.source, re.flags.includes('g') ? re.flags : re.flags + 'g');
+    let out = '', last = 0;
+    for (const m of str.matchAll(g)) {
+        if(!m[0]) continue;
+        out += esc(str.slice(last, m.index)) + '<mark>' + esc(m[0]) + '</mark>';
+        last= m.index + m[0].length;
+    }
+    return out + esc( str.slice(last));
 }
 export function matches(record, re){
     if(!re) return true;
