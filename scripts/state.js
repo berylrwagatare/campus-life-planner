@@ -1,9 +1,9 @@
-import{ state, fromMinutes } from './state.js'
+
 const RECORDS_KEY ='clp:records';
 const SETTINGS_KEY='clp:settings';
 
 
-function load(key,starValue) {
+function load(key,startValue) {
     try { return JSON.parse(localStorage.getItem(key)) || startValue;  }
     catch (error) { return startValue; }
 }
@@ -11,10 +11,10 @@ function load(key,starValue) {
 
 export const state ={
     records: load(RECORDS_KEY, []),
-settings: load(SETTINGS-KEY, {unit: 'minutes',cap: 0}),
+settings: load(SETTINGS_KEY, {unit: 'minutes',cap: 0}),
  searchRe:null,
  sortKey: 'date',
- sortDir:' asc'
+ sortDir: 'asc',
 };
 
 export function save(){
@@ -39,7 +39,7 @@ function makeId() {
 
 export function addRecord(data) {
     const now = new Date().toISOString();
-    state.records.push({...data, id: makeId(), createdAt: now, updateAt: now });
+    state.records.push({...data, id: makeId(), createdAt: now, updatedAt: now });
     save();
 }
 
@@ -58,4 +58,29 @@ export function setSearch( text, ignoreCase){
       state.searchRe = text === '' ? null : new RegExp(text, ignoreCase ? 'gi' :  'g');
       return true;  
     } catch ( error) { return false; }
+}
+
+export function boot() {
+  state.records = load(RECORDS_KEY, []);
+  state.settings = load(SETTINGS_KEY, {unit: 'minutes', cap: 0 });
+}
+
+export function addOrUpdate(data) {
+  const i = state.records.findIndex((r) => r.id === data.id );
+  if (i === -1) return addRecord(data);
+  state.records[i] = { ...state.records[i], ...data, updatedAt: new Date().toISOString()  };
+  save();
+}
+
+export const remove = deleteRecord;
+export const updateSettings = setSettings;
+export const exportJSON = () => JSON.stringify(state.records, null, 2);
+
+
+export function importRecords(data) {
+    if (!Array.isArray(data)) throw new Error('Invalid file: expected an array.');
+    const bad = data.map(validateRecord).find(Boolean);
+    if (bad) thrown new Error ('Invalid file: ' +bad);
+    state.records= data;
+    save();
 }
