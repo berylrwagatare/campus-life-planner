@@ -1,60 +1,50 @@
 *{ box-sizing: border-box; margin : 0; padding: 0; }
 body{ font-family : Arial, sans-serif; background : #efd3f1; color: #d3b2e6; line-height: 1.5; }
 header{ background: #dc5eef; color: white; text-align: center; padding: 20px 16px; }
+
 main{ max-width: 700px; margin: 0 auto ; padding : 16px; }
 
 
 .stat-box, .sta-box{
-flex:1;
-background: white;
-border-radius: 10px;
-padding: 12px;
-text-align: center;
+  flex:1;
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: centre;
 
 }
-.stat-box span, .sta-box span { display : block; font-size: 1.4rem; font-weight: bold; color: #d170e9;  }
- 
-.card {display: block; background : rgb(246, 183, 246); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.stat-box span, .sta-box span { display : block; font-size: 1.4rem; font-weight: bold; color : #eee3f0;  }
 
-h2 { margin-bottom: 10px; font-size: 1.2rem; }
+.card { display: block; background : white; border-radius: 10px; padding: 16px; margin-bottom: 16px;  }
+
+h2{ margin-bottom: 10px; font-size: 1.3rem; }
 
 
-label { display: block; margin: 10px 0 4px; font-weight: bold; }
- 
+label { display: block; margin: 10px 0 4px; font-wight: bold; }
 
-input, select {
+
+input, select{ 
   width: 100%;
   padding: 10px;
-  border: 1px solid #e4b0e6;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-
-input:focus, select:focus, buton:focus { outline: 3px solid #dc5eef; }
-
-button {
-  width: 100%;
-  margin-top : 14px;
-  padding: 12px;
-  background:#f4d7f8;
+  background: #f4d7f8;
   color:white;
-  border: none;
+  border:none;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
+
 }
+button:hover{ background: #dfbce8}
+ 
 
+.list-header { display : flex; justify-content: space-between; align-items: center; }
+.list-header select { width: auto ;  }
+ul { list-style: none;}
+li { padding : 10px 0; boder-bottom : 1px solid #eee; }
+#emptyMessage { text-allign: center; color: #f190fe; padding: 14px 0; }
 
-button:hover { background: #dfbce8; }
+@media (max-width:480px){
+  .stats { flex-direction: column; }
 
-.list-header { display: flex; justify-content: space-between; align-items: center; }
-.list-header select { width : auto; }
-ul { list-style: none; }
-li { padding: 10px 0; border-bottom: 1px solid #eee;  }
-#emptyMessage { text-align: center; color: #f190fe; padding: 14px 0; }
-
-@media (max-width:480px) {
-  .stats { flex-direction : column; }
-
+  
 }
