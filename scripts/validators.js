@@ -7,7 +7,7 @@ export const PATTERNS = {
 };
 
 export const validateTitle= (v)  =>
-  !PATTERNS.title.test(v) ? 'No leading/trailing spaces. '
+  !PATTERNS.title.test(v) ? 'No leading/trailing spaces.'
     : PATTERNS.duplicateWord.test(v) ?' Do not repeat a word twice in a row.' :' ';
 
     export const validateDuration = (v) => {

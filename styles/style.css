@@ -5,15 +5,15 @@ header{ background: #dc5eef; color: white; text-align: center; padding: 20px 16p
 main{ max-width: 700px; margin: 0 auto ; padding : 16px; }
 
 
-.stat-box, .sta-box{
+.stat-box {
   flex:1;
   background: white;
   border-radius: 10px;
   padding: 12px;
-  text-align: centre;
+  text-align: center;
 
 }
-.stat-box span, .sta-box span { display : block; font-size: 1.4rem; font-weight: bold; color : #eee3f0;  }
+.stat-box span  { display : block; font-size: 1.4rem; font-weight: bold; color : #eee3f0;  }
 
 .card { display: block; background : white; border-radius: 10px; padding: 16px; margin-bottom: 16px;  }
 
@@ -31,7 +31,6 @@ input, select{
   border:none;
   border-radius: 8px;
   font-size: 1rem;
-  cursor: pointer;
 
 }
 button:hover{ background: #dfbce8}
