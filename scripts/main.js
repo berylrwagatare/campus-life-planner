@@ -18,7 +18,7 @@ $('unit').value = state.settings.unit;
 $('cap').value= capView();
 renderAll();
 
-$('taskForm').addEventListener('submit', (e) =>  {  e,preventDefault();
+$('taskForm').addEventListener('submit', (e) =>  {  e.preventDefault();
    const title =$('title').value, date = $('dueDate').value , dur =
 $('duration').value, tag = $('tag').value;
   $('titleError').textContent =validateTitle(title);
@@ -28,7 +28,7 @@ $('duration').value, tag = $('tag').value;
   if ($('titleError').textContent || $('dateError').textContent  || $('durationError').textContent ||$('tagError').textContent  ){ 
     return say('formStatus', 'Please fix the errors before saving.');
   }
-  addOrUpdate({ id:$('editId').value || underfined, title, date,duration:toMinutes(dur), tag });
+  addOrUpdate({ id:$('editId').value || undefined, title, date,duration:toMinutes(dur), tag });
   resetForm();
   say('formStatus', 'Task saved.');
   renderAll();
@@ -53,9 +53,9 @@ if(del && confirm('Delete this task?')) { remove(del); renderAll(); }
   
  function applySearch() {
     const raw =$('search').value.trim();
-    const re = compileRegex(raw, $('caseInsesitive').checked ? 'i' : '');
+    const re = compileRegex(raw, $('caseInsensitive').checked ? 'i' : '');
     state.searchRe = raw ? re : null;
-    say ('searchStaus', !raw? '' : re ?  'Search ready.': 'Invalid regex. Try again.');
+    say ('searchStatus', !raw? '' : re ?  'Search ready.': 'Invalid regex. Try again.');
     renderAll();
  }
 
@@ -71,20 +71,28 @@ $('cap').onchange = () => {
   renderAll();
 };
 $('exportBtn').onclick= () => {
-    const a = Object.assign(document.createElement('a'),{ download: 'planner- export.json'});
+    const a = Object.assign(document.createElement('a'),{ download: 'planner-export.json'});
     a.href=URL.createObjectURL(new Blob([exportJSON()], { type:'application/json '}));
     a.click();
     say('settingsStatus','Exported JSON.');
 };
 async function loadList(data, ok){
-    try { importRecords(data); say('settingStatus',ok ); renderAll();  }
+    try { importRecords(data); say('settingsStatus',ok ); renderAll();  }
     catch (err) { say('settingsStatus', err.message); }
 }
 $('importFile').onchange = async (e) => {
     const f = e.target.files[0];
-    if (f) loadList(JSON.parse(await f.text()), 'Imported records.');
+    if(!f) return;
+      
+    try{
+
+      loadList(JSON.parse(await f.text()), 'Imported records.');
+    }
+    catch {
+      say('settingsStatus', 'Invalid file : not valid  JSON.');
+    }
 };
-$('loadSeed').onclick = async () => loadList(await (await fetch('seed.json')).json(), 'Loaded seed.json' );
+
 
 
 
